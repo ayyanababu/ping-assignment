@@ -124,7 +124,3 @@ npm run test:unit
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-You can customize it further based on any additional features or changes you want to emphasize.
