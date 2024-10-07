@@ -84,7 +84,7 @@
       <div class="flex flex-row justify-center gap-2 card">
         <SelectFlag :priority="priority" @update:priority="priority = $event"> </SelectFlag>
 
-        <Button
+        <!-- <Button
           @click="addAttachment"
           icon="pi pi-paperclip"
           iconPos="right"
@@ -93,7 +93,7 @@
           label="Add Attachment"
           severity="secondary"
           text
-        ></Button>
+        ></Button> -->
       </div>
 
       <div class="flex flex-row gap-2 ml-auto">
@@ -176,13 +176,15 @@ export default defineComponent({
 
     const submitTodo = () => {
       if (title.value) {
+        const timeStamp = props.actionName === 'Edit' ? props.todo.timestamp : new Date().getTime()
         emit('addItem', {
           title: title.value,
           description: description.value,
           priority: priority.value as PriorityVal,
           isCompleted: false,
-          timestamp: props.actionName === 'Edit' ? props.todo.timestamp : new Date().getTime(),
-          subtasks: subtasks.value
+          timestamp: timeStamp,
+          subtasks: subtasks.value,
+          id: timeStamp
         } as Todo)
         resetForm()
       }
@@ -209,12 +211,14 @@ export default defineComponent({
 
     const addSubtask = () => {
       if (subtask.value) {
+        const timeStamp = new Date().getTime()
         subtasks.value.push({
           title: subtask.value,
           description: '',
           priority: subtaskPriority.value as PriorityVal,
           isCompleted: false,
-          timestamp: new Date().getTime()
+          timestamp: timeStamp,
+          id: timeStamp
         })
         subtask.value = ''
         subtaskPriority.value = priorities[priorities.length - 1]
