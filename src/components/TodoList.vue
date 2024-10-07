@@ -54,6 +54,7 @@
         </div>
 
         <ul
+          data-testid="todo-list"
           class="gap-2"
           :class="viewType === 'Grid' ? 'grid grid-cols-2 md:grid-cols-3' : 'flex flex-col'"
         >
@@ -61,6 +62,7 @@
             v-for="(todo, index) in group.todos"
             :key="index"
             :todo="todo"
+            data-testid="todo-item-{index}"
             @removeItem="removeItem(todo)"
             @showEditDialog="showEditDialog(todo)"
             @toggleCompleted="toggleCompleted(todo)"
@@ -80,7 +82,7 @@
         >Clear All</Button
       >
 
-      <NoTodo v-if="todos.length === 0" />
+      <NoTodo v-if="todos.length === 0" data-testid="empty-todo-list" />
     </div>
   </div>
 </template>

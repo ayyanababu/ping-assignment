@@ -12,6 +12,7 @@
 
     <input
       v-model="title"
+      data-testid="todo-input-title"
       placeholder="Title Starts Here..."
       class="px-2 py-1 transition-colors bg-transparent rounded-md focus:outline-none hover:bg-gray-100 font-roboto-slab"
     />
@@ -19,6 +20,7 @@
     <hr class="-my-1 border-top" />
 
     <textarea
+      data-testid="todo-input-description"
       v-model="description"
       placeholder="Describe your thoughts..."
       class="px-2 py-1 transition-colors bg-transparent rounded-md focus:outline-none hover:bg-gray-100"
@@ -65,7 +67,11 @@
           class="w-full"
         />
 
-        <SelectFlag :priority="subtaskPriority" @update:priority="subtaskPriority = $event">
+        <SelectFlag
+          :priority="subtaskPriority"
+          @update:priority="subtaskPriority = $event"
+          data-testid="todo-priority"
+        >
         </SelectFlag>
 
         <Button
@@ -113,6 +119,7 @@
           :icon="actionIcon ? actionIcon : 'pi pi-plus'"
           iconPos="right"
           size="small"
+          data-testid="add-todo-button"
           :disabled="!title || !description"
           :title="
             !title || !description

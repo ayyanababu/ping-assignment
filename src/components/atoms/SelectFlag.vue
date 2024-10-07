@@ -60,9 +60,6 @@ export default defineComponent({
 
   setup(props, { emit }) {
     const priorities = Object.values(PRIORITY)
-
-    console.log('### priorities', priorities)
-
     const colors = computed(
       () =>
         Object.fromEntries(
