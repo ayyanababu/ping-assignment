@@ -43,10 +43,10 @@
 </template>
 
 <script lang="ts">
-import type { PriorityVal } from '@/types/Todo';
-import { PRIORITY, PRIORITY_COLOR } from '@/utils/consts';
-import { $dt } from '@primevue/themes';
-import { computed, defineComponent } from 'vue';
+import type { PriorityVal } from '@/types/Todo'
+import { PRIORITY, PRIORITY_COLOR } from '@/utils/consts'
+import { $dt } from '@primevue/themes'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'SelectFlag',
@@ -54,32 +54,32 @@ export default defineComponent({
   props: {
     priority: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
 
   setup(props, { emit }) {
-    const priorities = Object.values(PRIORITY);
+    const priorities = Object.values(PRIORITY)
 
-    console.log('### priorities', priorities);
+    console.log('### priorities', priorities)
 
     const colors = computed(
       () =>
         Object.fromEntries(
           Object.entries(PRIORITY_COLOR).map(([key, value]) => [key, $dt(value as string).value])
         ) as typeof PRIORITY_COLOR
-    );
+    )
 
     const priority = computed({
       get() {
-        return props.priority;
+        return props.priority
       },
       set(value) {
-        emit('update:priority', value);
-      },
-    });
+        emit('update:priority', value)
+      }
+    })
 
-    return { priorities, colors, priority };
-  },
-});
+    return { priorities, colors, priority }
+  }
+})
 </script>

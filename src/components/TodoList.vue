@@ -96,13 +96,17 @@ import AddTodo from './molecules/AddTodo.vue'
 import EditTodoDialog from './molecules/EditTodoDialog.vue'
 import { groupTodosByPriority, groupTodosByStatus } from '@/utils/TodoServices'
 
+const VIEW_TYPE_LIST = 'List'
+const GROUP_TYPE_STATUS = 'Status'
+const SORT_ORDER_ASC = 'asc'
+
 export default defineComponent({
   components: { AddTodo, TodoItem, NoTodo, EditTodoDialog },
   setup() {
     const todos = ref<Todo[]>([])
-    const viewType = ref<ViewType>('List')
-    const groupBy = ref<GroupType>('Status')
-    const sortOrder = ref<'asc' | 'desc'>('asc')
+    const viewType = ref<ViewType>(VIEW_TYPE_LIST)
+    const groupBy = ref<GroupType>(GROUP_TYPE_STATUS)
+    const sortOrder = ref<'asc' | 'desc'>(SORT_ORDER_ASC)
 
     const editingTodo = ref<GroupedTodo | null>(null)
 
@@ -180,6 +184,24 @@ export default defineComponent({
     }
 
     const groupedTodos = computed(getGroupedTodos)
+    const switchViewTitle = computed(
+      () => `Switch to ${viewType.value !== 'Grid' ? 'Grid' : 'List'} view`
+    )
+    const switchViewIcon = computed(() =>
+      viewType.value !== 'Grid' ? 'pi pi-list' : 'pi pi-th-large'
+    )
+    const groupByTitle = computed(
+      () => `Group by ${groupBy.value === 'Status' ? 'Priority' : 'Status'}`
+    )
+    const groupByIcon = computed(() =>
+      groupBy.value === 'Status' ? 'pi pi-list-check' : 'pi pi-flag'
+    )
+    const sortOrderTitle = computed(
+      () => `Sort ${sortOrder.value === 'asc' ? 'Descending' : 'Ascending'}`
+    )
+    const sortOrderIcon = computed(() =>
+      sortOrder.value === 'asc' ? 'pi pi-arrow-down' : 'pi pi-arrow-up'
+    )
 
     return {
       viewType,
