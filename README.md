@@ -1,61 +1,130 @@
-# todo-lists-ping
+# Vue.js Application - ToDo List with Priorities
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a simple ToDo list application built using Vue.js, PrimeVue components, and TypeScript. It allows users to add, prioritize, and manage tasks efficiently. The application includes end-to-end tests (E2E) using Cypress and unit tests using Vitest.
 
-## Recommended IDE Setup
+## Table of Contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- [Getting Started](#getting-started)
+- [Tech Stack](#tech-stack)
+- [Folder Structure](#folder-structure)
+- [Scripts](#scripts)
+- [Testing](#testing)
+- [License](#license)
 
-## Type Support for `.vue` Imports in TS
+## Getting Started
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Follow these steps to set up the project locally:
 
-## Customize configuration
+### Prerequisites
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Make sure you have Node.js and npm installed on your machine. You can download Node.js from [here](https://nodejs.org/).
 
-## Project Setup
+### Installation
 
-```sh
-npm install
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ayyanababu/ping-assignment.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd ping-assignment
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The app should now be running at [http://localhost:5173](http://localhost:5173).
+
+## Tech Stack
+
+- **Vue.js** - The progressive JavaScript framework for building user interfaces.
+- **PrimeVue** - UI components for Vue.js. See more at [PrimeVue](https://primevue.org/).
+- **TailwindCSS** - A utility-first CSS framework for styling.
+- **Cypress** - End-to-end testing framework for web apps.
+- **Vitest** - A fast unit testing framework for Vue.js applications.
+- **TypeScript** - A strongly typed programming language that builds on JavaScript.
+
+## Folder Structure
+
+```plaintext
+.
+├── cypress/                   # Cypress E2E test cases
+│   ├── e2e/
+│   │   └── todo.cy.ts          # End-to-end test for ToDo application
+│   ├── fixtures/
+│   └── support/
+├── public/                    # Public assets
+├── src/
+│   ├── assets/                # Static assets
+│   ├── components/
+│   │   ├── __tests__/         # Unit tests for components
+│   │   ├── atoms/             # Small UI components
+│   │   ├── molecules/         # Combined UI components
+│   │   ├── TodoItem.vue       # Vue component for a single ToDo item
+│   │   └── TodoList.vue       # Vue component for the ToDo list
+│   ├── services/
+│   │   └── LocalStorageService.ts # Service to handle localStorage interactions
+│   ├── types/
+│   │   └── Todo.ts            # TypeScript interfaces for ToDo items
+│   ├── utils/
+│   │   ├── consts.ts          # Constants used in the app
+│   │   └── PrioritySort.ts    # Utility function to sort tasks by priority
+│   ├── App.vue                # Main Vue component
+│   ├── main.ts                # Entry point for the application
+├── .eslintrc.cjs              # ESLint configuration
+├── .prettierrc.json           # Prettier configuration
+├── cypress.config.ts          # Cypress configuration
+├── tsconfig.json              # TypeScript configuration
+├── package.json               # Project dependencies and scripts
+└── README.md                  # Project documentation (this file)
 ```
 
-### Compile and Hot-Reload for Development
+## Scripts
 
-```sh
-npm run dev
-```
+The following npm scripts are available in the project:
 
-### Type-Check, Compile and Minify for Production
+- `npm run dev` - Start the development server using Vite.
+- `npm run build` - Build the application for production.
+- `npm run preview` - Preview the production build.
+- `npm run test:unit` - Run the unit tests with Vitest.
+- `npm run test:e2e:dev` - Run Cypress E2E tests in development mode.
+- `npm run lint` - Run ESLint to lint the codebase.
+- `npm run format` - Format the code using Prettier.
 
-```sh
-npm run build
-```
+## Testing
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### End-to-End Testing
 
-```sh
-npm run test:unit
-```
+End-to-end tests are written using Cypress. To run the E2E tests, use the following command:
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
+```bash
 npm run test:e2e:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+### Unit Testing
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+Unit tests are written using Vitest. To run unit tests, use:
 
-```sh
-npm run build
-npm run test:e2e
+```bash
+npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## License
 
-```sh
-npm run lint
-```
+This project is licensed under the MIT License.
+
+---
+
+You can customize it further based on any additional features or changes you want to emphasize.
