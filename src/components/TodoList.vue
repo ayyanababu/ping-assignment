@@ -184,24 +184,6 @@ export default defineComponent({
     }
 
     const groupedTodos = computed(getGroupedTodos)
-    const switchViewTitle = computed(
-      () => `Switch to ${viewType.value !== 'Grid' ? 'Grid' : 'List'} view`
-    )
-    const switchViewIcon = computed(() =>
-      viewType.value !== 'Grid' ? 'pi pi-list' : 'pi pi-th-large'
-    )
-    const groupByTitle = computed(
-      () => `Group by ${groupBy.value === 'Status' ? 'Priority' : 'Status'}`
-    )
-    const groupByIcon = computed(() =>
-      groupBy.value === 'Status' ? 'pi pi-list-check' : 'pi pi-flag'
-    )
-    const sortOrderTitle = computed(
-      () => `Sort ${sortOrder.value === 'asc' ? 'Descending' : 'Ascending'}`
-    )
-    const sortOrderIcon = computed(() =>
-      sortOrder.value === 'asc' ? 'pi pi-arrow-down' : 'pi pi-arrow-up'
-    )
 
     return {
       viewType,

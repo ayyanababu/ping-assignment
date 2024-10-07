@@ -136,6 +136,10 @@ import InputText from 'primevue/inputtext'
 
 export default defineComponent({
   name: 'AddTodo',
+  components: {
+    SelectFlag,
+    NoTodo
+  },
   props: {
     todo: {
       type: Object as () => Todo,
@@ -149,10 +153,6 @@ export default defineComponent({
       type: String,
       required: false
     }
-  },
-  components: {
-    SelectFlag,
-    NoTodo
   },
   setup(props, { emit }) {
     const priorities = Object.values(PRIORITY)
@@ -176,7 +176,8 @@ export default defineComponent({
 
     const submitTodo = () => {
       if (title.value) {
-        const timeStamp = props.actionName === 'Edit' ? props.todo.timestamp : new Date().getTime()
+        const timeStamp =
+          props.actionName === 'Edit' ? props?.todo?.timestamp : new Date().getTime()
         emit('addItem', {
           title: title.value,
           description: description.value,

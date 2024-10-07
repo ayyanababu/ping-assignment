@@ -1,9 +1,18 @@
 import { PRIORITY } from '@/utils/consts'
 
+// Enums
 export type PriorityVal = (typeof PRIORITY)[keyof typeof PRIORITY]
+export type ViewType = 'List' | 'Grid'
+export type GroupType = 'Status' | 'Priority'
+export enum Interval {
+  Daily = 'daily',
+  Weekly = 'weekly',
+  Monthly = 'monthly'
+}
 
+// Interfaces
 interface Repeat {
-  interval: 'daily' | 'weekly' | 'monthly'
+  interval: Interval
   nextOccurance: Date
 }
 
@@ -11,6 +20,7 @@ interface Attachment {
   type: string
   url: string
 }
+
 export interface BaseTodo {
   title: string
   description: string
@@ -18,9 +28,10 @@ export interface BaseTodo {
   isCompleted?: boolean
   timestamp: number
   id: number
-  repeat?: Repeat
-  attachments?: Attachment[]
+  // repeat?: Repeat
+  // attachments?: Attachment[]
 }
+
 export interface Todo extends BaseTodo {
   subtasks?: BaseTodo[]
 }
@@ -28,7 +39,3 @@ export interface Todo extends BaseTodo {
 export interface GroupedTodo extends Todo {
   todoIndex: number
 }
-
-export type ViewType = 'List' | 'Grid'
-
-export type GroupType = 'Status' | 'Priority'
