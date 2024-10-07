@@ -30,6 +30,7 @@
           icon="pi pi-pencil"
           severity="info"
           text
+          :data-testid="'edit-button'"
           class="invisible ml-auto transition-all group-hover:visible"
         >
         </Button>
@@ -41,7 +42,7 @@
           severity="danger"
           text
           class="ml-auto"
-          :data-testid="'remove-' + localTodo.title"
+          :data-testid="`remove-${localTodo.title}`"
         >
         </Button>
       </div>
@@ -63,9 +64,12 @@
           :data-testid="subtask.isCompleted ? 'task-completed' : 'task-incomplete'"
         />
 
-        <span class="text-sm" :class="subtask.isCompleted ? 'line-through' : ''">{{
-          subtask.title
-        }}</span>
+        <span
+          :data-testid="`subtask-${subtask.title}`"
+          class="text-sm"
+          :class="subtask.isCompleted ? 'line-through' : ''"
+          >{{ subtask.title }}</span
+        >
 
         <i
           class="ml-auto pi pi-flag-fill"
@@ -100,7 +104,16 @@ export default defineComponent({
 
     const removeItem = () => emit('removeItem')
     const showEditDialog = () => emit('showEditDialog')
-    const toggleCompleted = () => emit('toggleCompleted')
+
+    const toggleCompleted = () => {
+      console.log('Toggling completion:', localTodo.value.isCompleted) // Log current completion state
+
+      emit('toggleCompleted', !localTodo.value.isCompleted)
+    }
+
+    const toggleSubtaskCompletion = (subtask) => {
+      subtask.isCompleted = !subtask.isCompleted
+    }
 
     const colors = computed(
       () =>
@@ -115,6 +128,7 @@ export default defineComponent({
       removeItem,
       showEditDialog,
       toggleCompleted,
+      toggleSubtaskCompletion,
       colors
     }
   }
