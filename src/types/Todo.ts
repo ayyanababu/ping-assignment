@@ -2,6 +2,15 @@ import { PRIORITY } from '@/utils/consts'
 
 export type PriorityVal = (typeof PRIORITY)[keyof typeof PRIORITY]
 
+interface Repeat {
+  interval: 'daily' | 'weekly' | 'monthly'
+  nextOccurance: Date
+}
+
+interface Attachment {
+  type: string
+  url: string
+}
 export interface BaseTodo {
   title: string
   description: string
@@ -9,6 +18,8 @@ export interface BaseTodo {
   isCompleted?: boolean
   timestamp: number
   id: number
+  repeat?: Repeat
+  attachments?: Attachment[]
 }
 export interface Todo extends BaseTodo {
   subtasks?: BaseTodo[]
