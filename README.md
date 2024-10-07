@@ -7,6 +7,7 @@ This is a simple ToDo list application built using Vue.js, PrimeVue components, 
 - [Getting Started](#getting-started)
 - [Tech Stack](#tech-stack)
 - [Folder Structure](#folder-structure)
+- [Data Normalization in ToDo Application](#data-normalization-in-todo-application)
 - [Scripts](#scripts)
 - [Testing](#testing)
 - [License](#license)
@@ -89,6 +90,46 @@ Make sure you have Node.js and npm installed on your machine. You can download N
 ├── tsconfig.json              # TypeScript configuration
 ├── package.json               # Project dependencies and scripts
 └── README.md                  # Project documentation (this file)
+```
+
+## Data Normalization in ToDo Application
+
+In this documentation, I will explain the data normalization approach adopted for the ToDo application, specifically why we chose to use **dates as keys** and store **todos as arrays**. This structure was chosen with future scalability in mind, particularly for expanding the application to handle **daily tasks** more efficiently.
+
+1. **Efficient Grouping by Date**
+2. **Logical Extension for Future Use**
+3. **Extendability for Daily ToDos (Daily, weekly, monthly tasks, Recurring tasks)**
+
+```json
+{
+  "Mon Oct 07 2024": [
+    {
+      "title": "first-edit",
+      "description": "first-edit",
+      "priority": "none",
+      "isCompleted": true,
+      "timestamp": 1728273126676,
+      "subtasks": [],
+      "id": 1728273126676,
+      "todoIndex": 0
+    }
+  ],
+  "Tue Oct 08 2024": [
+    {
+      "title": "Recurring Task",
+      "description": "This task repeats every day",
+      "priority": "moderate",
+      "isCompleted": false,
+      "timestamp": 1728273180000,
+      "subtasks": [],
+      "id": 1728273180000,
+      "repeat": {
+        "interval": "daily",
+        "nextOccurrence": "Tue Oct 09 2024"
+      }
+    }
+  ]
+}
 ```
 
 ## Scripts
